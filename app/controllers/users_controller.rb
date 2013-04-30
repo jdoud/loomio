@@ -24,6 +24,14 @@ class UsersController < BaseController
     end
   end
 
+  def show
+    user = User.find(params[:id])
+    # if current_user.in_same_group_as?(user)
+    #   flash[:error] = t("error.cant_view_member")
+    #   redirect_to :root
+    # end
+  end
+
   def update
     if current_user.update_attributes(params[:user])
       set_locale

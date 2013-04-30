@@ -22,6 +22,24 @@ describe UsersController do
     end
   end
 
+  describe "#show other_user's page" do
+    context "signed in user" do
+      before { sign_in user }
+
+      context "user is in the same group as other_user" do
+        it "shows other_user's profile page"
+      end
+      context "user does not share any groups with other_user" do
+        it "redirects to root"
+        it "tells the user they don't have permission"
+      end
+    end
+    context "signed out user" do
+      it "tells the user they don't have permission"
+      it "redirects to root"
+    end
+  end
+
   describe "#update" do
     it "updates user.name" do
       user.should_receive(:name=).with("Peter Chilltooth")
